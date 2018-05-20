@@ -44,7 +44,7 @@ public class PropUtils {
      */
     public static void init() {
         try {
-            String path = getClassesPath(PropUtils.class);
+            String path = getClassesPath(PropUtils.class).replace("test-classes","classes");
             Properties properties = new Properties();
             // 使用InPutStream流读取properties文件
             BufferedReader bufferedReader = new BufferedReader(new FileReader(path+"application.properties"));
@@ -55,6 +55,8 @@ public class PropUtils {
             conf.put("aliyun.oss.secretAccessKey",properties.getProperty("aliyun.oss.secretAccessKey"));
             conf.put("aliyun.oss.bucketName",properties.getProperty("aliyun.oss.bucketName"));
             conf.put("aliyun.oss.host",properties.getProperty("aliyun.oss.host"));
+            conf.put("aliyun.oss.projectPath",properties.getProperty("aliyun.oss.projectPath"));
+            conf.put("aliyun.oss.sourcePath",properties.getProperty("aliyun.oss.sourcePath"));
         } catch (IOException e) {
             e.printStackTrace();
         }
