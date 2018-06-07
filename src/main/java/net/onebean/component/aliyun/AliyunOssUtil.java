@@ -54,25 +54,6 @@ public class AliyunOssUtil {
         return  new OSSClient(endpoint,accessKeyId, secretAccessKey);
     }
 
-   /**
-    *  删除一个Bucket和其中的Objects 
-    * @param bucketName
-    * @throws OSSException
-    * @throws ClientException
-    */
-    public static void deleteBucket(String bucketName)
-            throws OSSException, ClientException {
-
-        ObjectListing ObjectListing = ossClient.listObjects(bucketName);
-        List<OSSObjectSummary> listDeletes = ObjectListing
-                .getObjectSummaries();
-        for (int i = 0; i < listDeletes.size(); i++) {
-            String objectName = listDeletes.get(i).getKey();
-            // 如果不为空，先删除bucket下的文件
-            ossClient.deleteObject(bucketName, objectName);
-        }
-        ossClient.deleteBucket(bucketName);
-    }
 
     /**
      *  把Bucket设置为所有人可读
@@ -143,6 +124,27 @@ public class AliyunOssUtil {
 				e.printStackTrace();
 			}
 	}
+    }
+
+
+    /**
+     *  删除一个Bucket和其中的Objects
+     * @param bucketName
+     * @throws OSSException
+     * @throws ClientException
+     */
+    public static void deleteBucket(String bucketName)
+            throws OSSException, ClientException {
+
+        ObjectListing ObjectListing = ossClient.listObjects(bucketName);
+        List<OSSObjectSummary> listDeletes = ObjectListing
+                .getObjectSummaries();
+        for (int i = 0; i < listDeletes.size(); i++) {
+            String objectName = listDeletes.get(i).getKey();
+            // 如果不为空，先删除bucket下的文件
+            ossClient.deleteObject(bucketName, objectName);
+        }
+        ossClient.deleteBucket(bucketName);
     }
     
     /**

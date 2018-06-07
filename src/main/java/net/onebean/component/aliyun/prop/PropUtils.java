@@ -24,9 +24,7 @@ public class PropUtils {
     public static PropUtils getInstance() {
         if (instance == null) {
             synchronized (PropUtils.class) {
-                if (instance == null) {
-                    instance = new PropUtils();
-                }
+                instance = new PropUtils();
             }
         }
         return instance;
@@ -57,6 +55,7 @@ public class PropUtils {
             conf.put("aliyun.oss.host",properties.getProperty("aliyun.oss.host"));
             conf.put("aliyun.oss.projectPath",properties.getProperty("aliyun.oss.projectPath"));
             conf.put("aliyun.oss.sourcePath",properties.getProperty("aliyun.oss.sourcePath"));
+            conf.put("aliyun.oss.zipimg.limit.size",properties.getProperty("aliyun.oss.zipimg.limit.size"));
         } catch (IOException e) {
             e.printStackTrace();
         }

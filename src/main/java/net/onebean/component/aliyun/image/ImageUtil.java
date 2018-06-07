@@ -508,4 +508,47 @@ public class ImageUtil {
 		}
 		return true;
 	}
+
+	/**
+	 * 获取图片宽度
+	 * @param file  图片文件
+	 * @return 宽度
+	 */
+	public static int getImgWidth(File file) {
+		InputStream is = null;
+		BufferedImage src = null;
+		int ret = -1;
+		try {
+			is = new FileInputStream(file);
+			src = javax.imageio.ImageIO.read(is);
+			// 得到源图宽
+			ret = src.getWidth(null);
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
+
+
+	/**
+	 * 获取图片高度
+	 * @param file  图片文件
+	 * @return 高度
+	 */
+	public static int getImgHeight(File file) {
+		InputStream is = null;
+		BufferedImage src = null;
+		int ret = -1;
+		try {
+			is = new FileInputStream(file);
+			src = javax.imageio.ImageIO.read(is);
+			// 得到源图高
+			ret = src.getHeight(null);
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
 }
