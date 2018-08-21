@@ -125,6 +125,15 @@
                         </executions>
                     </plugin>
                 </plugins>
+                <resources>
+                    <resource>
+                        <directory>src/lib</directory>
+                        <includes>
+                            <include>**/*.jar</include>
+                        </includes>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
             </build>
             <distributionManagement>
                 <snapshotRepository>
@@ -158,18 +167,27 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/lib</directory>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
-    <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <name>Releases</name>
-            <url>http://192.168.31.165:8081/repository/maven-releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>nexus</id>
-            <name>Snapshot</name>
-            <url>http://192.168.31.165:8081/repository/maven-snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
+    <!--<distributionManagement>-->
+        <!--<repository>-->
+            <!--<id>nexus</id>-->
+            <!--<name>Releases</name>-->
+            <!--<url>http://192.168.31.165:8081/repository/maven-releases</url>-->
+        <!--</repository>-->
+        <!--<snapshotRepository>-->
+            <!--<id>nexus</id>-->
+            <!--<name>Snapshot</name>-->
+            <!--<url>http://192.168.31.165:8081/repository/maven-snapshots</url>-->
+        <!--</snapshotRepository>-->
+    <!--</distributionManagement>-->
 
 </project>
