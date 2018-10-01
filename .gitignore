@@ -1,1 +1,3 @@
 net.onebean.aliyun.oss.iml
+target/
+.idea/

@@ -16,6 +16,10 @@
     <name>net.onebean.aliyun.oss</name>
     <description>aliyun oss for onebean</description>
 
+    <properties>
+        <java.version>1.7</java.version>
+    </properties>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.aliyun.oss/aliyun-sdk-oss -->
         <dependency>
