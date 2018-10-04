@@ -1,12 +1,11 @@
 package net.onebean.component.aliyun.image;
 
-import net.onebean.component.aliyun.MimeTypes;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGEncodeParam;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
-import net.sf.javavp8decoder.imageio.WebPImageReaderSpi;
+import net.onebean.component.aliyun.MimeTypes;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -21,7 +20,6 @@ import org.apache.log4j.Logger;
 import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
-import javax.imageio.spi.IIORegistry;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +46,7 @@ import java.util.Random;
 public class ImageUtil {
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("HHmmss");
 	private static final Logger logger = Logger.getLogger(ImageUtil.class);
-	private static Boolean include = false;
+//	private static Boolean include = false;
 
 	// 最大允许下载2M以内的图像
 	public final static int DOWNLOAD_IMG_MAX_LENGHT = 1024 * 1024 * 2;
@@ -366,22 +364,22 @@ public class ImageUtil {
 	 * @param jpgPath
 	 */
 	public static void webpToJpg(String webpPath, String jpgPath) {
-		if (!include) {
-			IIORegistry r = IIORegistry.getDefaultInstance();
-			WebPImageReaderSpi s = new WebPImageReaderSpi();
-			r.registerServiceProvider(s);
-			include = true;
-		}
+//		if (!include) {
+//			IIORegistry r = IIORegistry.getDefaultInstance();
+//			WebPImageReaderSpi s = new WebPImageReaderSpi();
+//			r.registerServiceProvider(s);
+//			include = true;
+//		}
 		BufferedImage bi;
 		try {
 			bi = ImageIO.read(new File(webpPath));
 			ImageIO.write(bi, "jpg", new File(jpgPath));
-		} catch (IIOException e) {
+		}catch (IIOException e) {
+			logger.error("webp转换为jpg时发生异常",e);
 		} catch (IOException e) {
-			logger.info("webp转换jpg时发生异常,webpPath:" + webpPath);
-			// logger.error("webp转换为jpg时发生异常",e);
+			logger.error("webp转换jpg时发生异常,webpPath:" + webpPath);
 		} catch (Exception e) {
-
+			 logger.error("webp转换为jpg时发生异常",e);
 		}
 	}
 
