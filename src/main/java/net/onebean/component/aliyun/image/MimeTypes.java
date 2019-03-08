@@ -1,4 +1,4 @@
-package net.onebean.component.aliyun;
+package net.onebean.component.aliyun.image;
 
 
 public enum MimeTypes {
