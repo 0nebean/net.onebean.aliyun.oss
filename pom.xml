@@ -6,21 +6,28 @@
 
     <parent>
         <groupId>net.onebean</groupId>
-        <artifactId>net.onebean.spring.boot</artifactId>
-        <version>1.1.0.8.RELEASE</version>
+        <artifactId>onebean.boot.stater</artifactId>
+        <version>2.0.0.RELEASE</version>
     </parent>
-    <version>1.1.0.7.RELEASE</version>
-    <artifactId>net.onebean.aliyun.oss</artifactId>
+
+
+    <version>1.0.0.RELEASE</version>
+    <artifactId>net.onebean.data.aliyun.oss</artifactId>
     <packaging>jar</packaging>
 
-    <name>net.onebean.aliyun.oss</name>
-    <description>aliyun oss for onebean</description>
+    <name>data.aliyun.oss</name>
+    <description>aliyun oss dependency</description>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>net.onebean</groupId>
+            <artifactId>net.onebean.core</artifactId>
+            <version>${core.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.aliyun.oss/aliyun-sdk-oss -->
         <dependency>
             <groupId>com.aliyun.oss</groupId>
@@ -121,15 +128,6 @@
                         </executions>
                     </plugin>
                 </plugins>
-                <resources>
-                    <resource>
-                        <directory>src/lib</directory>
-                        <includes>
-                            <include>**/*.jar</include>
-                        </includes>
-                        <filtering>true</filtering>
-                    </resource>
-                </resources>
             </build>
             <distributionManagement>
                 <snapshotRepository>
@@ -145,45 +143,36 @@
             </distributionManagement>
         </profile>
 
+        <profile>
+            <id>snapshot</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <source>${java.version}</source>
+                            <target>${java.version}</target>
+                            <compilerArguments>
+                                <bootclasspath>${JAVA_HOME}/jre/lib/rt.jar</bootclasspath>
+                            </compilerArguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <distributionManagement>
+                <repository>
+                    <id>releases</id>
+                    <name>Nexus Release Repository</name>
+                    <url>http://ek-nexus.eakay.cn/nexus/content/repositories/releases/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>snapshots</id>
+                    <name>Nexus Snapshot Repository</name>
+                    <url>http://ek-nexus.eakay.cn/nexus/content/repositories/snapshots/</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
     </profiles>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <!--<source>1.7</source>-->
-                    <!--<target>1.7</target>-->
-                    <compilerArguments>
-                        <bootclasspath>${JAVA_HOME}/jre/lib/rt.jar</bootclasspath>
-                    </compilerArguments>
-                </configuration>
-            </plugin>
-        </plugins>
-        <resources>
-            <resource>
-                <directory>src/lib</directory>
-                <includes>
-                    <include>**/*.jar</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-    </build>
-    <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <name>Releases</name>
-            <url>http://192.168.31.165:8081/repository/maven-releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>nexus</id>
-            <name>Snapshot</name>
-            <url>http://192.168.31.165:8081/repository/maven-snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 
 </project>

@@ -45,7 +45,7 @@ public class PropUtils {
             String path = getClassesPath(PropUtils.class).replace("test-classes","classes");
             Properties properties = new Properties();
             // 使用InPutStream流读取properties文件
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(path+"application.properties"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(path+"public-conf.aliyun-oss.properties"));
             properties.load(bufferedReader);
             // 获取key对应的value值
             conf.put("aliyun.oss.endpoint",properties.getProperty("aliyun.oss.endpoint"));

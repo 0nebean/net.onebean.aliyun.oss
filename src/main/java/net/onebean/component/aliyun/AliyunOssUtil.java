@@ -57,7 +57,7 @@ public class AliyunOssUtil {
 
     /**
      *  把Bucket设置为所有人可读
-     * @param bucketName
+     * @param bucketName 节点名称
      * @throws OSSException
      * @throws ClientException
      */
@@ -71,17 +71,16 @@ public class AliyunOssUtil {
 
     /**
      *  上传文件
-     * @param bucketName
-     * @param key
-     * @param filename
+     * @param bucketName 节点名称
+     * @param key 文件在oss上的key
+     * @param filePath 文件的路径
      * @param contentType default "image/gif"
      * @throws OSSException
      * @throws ClientException
      * @throws FileNotFoundException
      */
-    public static String uploadFile(String bucketName, String key, String filename, String contentType)
-            throws OSSException, ClientException, FileNotFoundException {
-        File file = new File(filename);
+    public static String uploadFile(String bucketName, String key, String filePath, String contentType) throws OSSException, ClientException, FileNotFoundException {
+        File file = new File(filePath);
         contentType = contentType == null ? "image/gif" : contentType;
         ObjectMetadata objectMeta = new ObjectMetadata();
         objectMeta.setContentLength(file.length());
@@ -93,20 +92,20 @@ public class AliyunOssUtil {
 
     /**
      * 下载文件
-     * @param bucketName
-     * @param key
-     * @param filename
+     * @param bucketName 节点名称
+     * @param key 文件在oss上的key
+     * @param filePath 下载目标的文件路径
      * @throws OSSException
      * @throws ClientException
      */
-    public static void downloadFile(String bucketName, String key, String filename) throws OSSException, ClientException {
-        ossClient.getObject(new GetObjectRequest(bucketName, key),new File(filename));
+    public static void downloadFile(String bucketName, String key, String filePath) throws OSSException, ClientException {
+        ossClient.getObject(new GetObjectRequest(bucketName, key),new File(filePath));
     }
     
     /**
      * 创建一个文件夹
-     * @param bucketName
-     * @param folderPah
+     * @param bucketName 节点名称
+     * @param folderPah 文件夹路径
      */
     public static void createFolder(String bucketName, String folderPah){
 		ObjectMetadata objectMeta = new ObjectMetadata();
@@ -129,7 +128,7 @@ public class AliyunOssUtil {
 
     /**
      *  删除一个Bucket和其中的Objects
-     * @param bucketName
+     * @param bucketName 节点名称
      * @throws OSSException
      * @throws ClientException
      */
@@ -149,8 +148,8 @@ public class AliyunOssUtil {
     
     /**
      * 删除一个OSS文件对象
-     * @param bucketName
-     * @param key
+     * @param bucketName 节点名称
+     * @param key 文件在oss上的key
      */
     public static void deleteObject(String bucketName, String key){
         ossClient.deleteObject(bucketName, key);
