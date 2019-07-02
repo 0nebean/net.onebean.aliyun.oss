@@ -1,19 +1,16 @@
 package net.onebean.component.aliyun.image;
 
-import net.onebean.component.aliyun.prop.PropUtils;
+import net.onebean.util.PropUtil;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
 public class ImageZipUtil {
 
-    private final static int LIMIT_SIZE = Integer.valueOf(PropUtils.getConfing("aliyun.oss.zipimg.limit.size"));
+    private final static int LIMIT_SIZE = Integer.valueOf(PropUtil.getInstance().getConfig("aliyun.oss.zipimg.limit.size",PropUtil.PUBLIC_CONF_ALIYUN));
     /**
      * 根据设置的宽高等比例压缩图片文件<br> 先保存原文件，再压缩、上传
      * @param oldFile  要进行压缩的文件

@@ -4,7 +4,7 @@ import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.*;
-import net.onebean.component.aliyun.prop.PropUtils;
+import net.onebean.util.PropUtil;
 
 import java.io.*;
 import java.util.HashMap;
@@ -48,9 +48,9 @@ public class AliyunOssUtil {
     protected static OSSClient getOssClient(){
         // 使用默认的OSS服务器地址创建OSSClient对象。
         /*oss参数系*/
-        String endpoint = PropUtils.getInstance().getConfing("aliyun.oss.endpoint");
-        String accessKeyId = PropUtils.getInstance().getConfing("aliyun.oss.accessKeyId");
-        String secretAccessKey = PropUtils.getInstance().getConfing("aliyun.oss.secretAccessKey");
+        String endpoint = PropUtil.getInstance().getConfig("aliyun.oss.endpoint",PropUtil.PUBLIC_CONF_ALIYUN);
+        String accessKeyId = PropUtil.getInstance().getConfig("aliyun.oss.accessKeyId",PropUtil.PUBLIC_CONF_ALIYUN);
+        String secretAccessKey = PropUtil.getInstance().getConfig("aliyun.oss.secretAccessKey",PropUtil.PUBLIC_CONF_ALIYUN);
         return  new OSSClient(endpoint,accessKeyId, secretAccessKey);
     }
 
