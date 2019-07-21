@@ -10,7 +10,7 @@ Documentation
 ---
 - Config
 #### chemical-el框架使用Apollo作为注册中心 ,以下是需要的配置namespace
-[public-conf.aliyun-oss](https://github.com/0nebean/public.conf/blob/master/conf/public-conf.aliyun-oss.properties)
+[public-conf.aliyun](https://github.com/0nebean/public.conf/blob/master/conf/public-conf.aliyun.properties)
 
 - API
 #### 上传文件的方法 见AliyunOssUtil:
