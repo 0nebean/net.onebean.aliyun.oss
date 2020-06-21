@@ -2,7 +2,7 @@ package net.onebean.component.aliyun;
 
 import java.util.Map;
 /**
- * CkEditer上传文件返回VO
+ * Ck编辑器上传文件返回VO
  * @author 0neBean
  */
 public class CkEditerUploadCallBackVo {

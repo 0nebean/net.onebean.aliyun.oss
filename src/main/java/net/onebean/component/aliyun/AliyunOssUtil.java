@@ -43,7 +43,7 @@ public class AliyunOssUtil {
     /**
      * 初始化oss连接
      * @author 0neBean
-     * @return
+     * @return OSSClient
      */
     protected static OSSClient getOssClient(){
         // 使用默认的OSS服务器地址创建OSSClient对象。
@@ -58,8 +58,8 @@ public class AliyunOssUtil {
     /**
      *  把Bucket设置为所有人可读
      * @param bucketName 节点名称
-     * @throws OSSException
-     * @throws ClientException
+     * @throws OSSException oss异常
+     * @throws ClientException 连接异常
      */
     public static void setBucketPublicReadable(String bucketName)throws OSSException, ClientException {
         //创建bucket
@@ -75,9 +75,9 @@ public class AliyunOssUtil {
      * @param key 文件在oss上的key
      * @param filePath 文件的路径
      * @param contentType default "image/gif"
-     * @throws OSSException
-     * @throws ClientException
-     * @throws FileNotFoundException
+     * @throws OSSException oss异常
+     * @throws ClientException 连接异常
+     * @throws FileNotFoundException 文件不存在异常
      */
     public static String uploadFile(String bucketName, String key, String filePath, String contentType) throws OSSException, ClientException, FileNotFoundException {
         File file = new File(filePath);
@@ -95,8 +95,8 @@ public class AliyunOssUtil {
      * @param bucketName 节点名称
      * @param key 文件在oss上的key
      * @param filePath 下载目标的文件路径
-     * @throws OSSException
-     * @throws ClientException
+     * @throws OSSException oss异常
+     * @throws ClientException 连接异常
      */
     public static void downloadFile(String bucketName, String key, String filePath) throws OSSException, ClientException {
         ossClient.getObject(new GetObjectRequest(bucketName, key),new File(filePath));
@@ -129,8 +129,8 @@ public class AliyunOssUtil {
     /**
      *  删除一个Bucket和其中的Objects
      * @param bucketName 节点名称
-     * @throws OSSException
-     * @throws ClientException
+     * @throws OSSException oss异常
+     * @throws ClientException 连接异常
      */
     public static void deleteBucket(String bucketName)
             throws OSSException, ClientException {
